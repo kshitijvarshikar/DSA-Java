@@ -59,9 +59,6 @@ DSA-Java/
 
 **Kshitij Varshikar**
 
-B.Tech in Artificial Intelligence
-GH Raisoni College of Engineering and Management, Nagpur
-
 GitHub: https://github.com/kshitijvarshikar
 
 ---
