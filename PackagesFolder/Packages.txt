@@ -1,0 +1,45 @@
+📘 Java Packages
+
+🔹 What is a Package?
+Package is a group of similar types of classes, interfaces and sub-packages. Packages can be built-in or user defined.
+
+
+🔹 Types of Packages
+
+1. Built-in Packages
+-Already provided by Java.
+-No need to create them.
+
+Examples:-
+ java.lang → String, Math, System *(auto imported)*
+ java.util → Scanner, ArrayList
+ java.io → File handling
+ java.sql → Database
+
+
+2. User-defined Packages
+-Created by programmer using package keyword.
+
+Syntax:
+package packagename;
+
+
+🔹 How to Create Package
+1. Write package packagename;
+2. Compile using:
+
+
+🔹 How to Use Package
+Import Syntax:
+import packagename.ClassName;
+
+
+Single class import: import java.util.Scanner;                   
+All classes import: import java.util.*;
+
+
+🔹 Important Points
+javalang is automatically imported
+Use package to create
+Use import to use
+Packages act like folders

@@ -1,0 +1,54 @@
+Qs1 :- Given the head of a singly linked list, remove the N-th node from the end(last) of the list and return its head.
+✅ Time Complexity: O(n)
+Why :
+First while loop → counts size → O(n)
+Second while loop → goes to position → O(n)
+Total → O(n) + O(n) = O(n) (ignore constants)
+
+✅ Space Complexity: O(1)
+Why:
+No extra data structure used
+Only few variables (temp, prev, cp, etc.)
+
+✅ Final Answer 
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+
+
+
+
+Qs2 :- Given the head of a singly linked list, check whether it is a palindrome or not.
+✅ Time Complexity: O(n)
+Why:
+findMiddle() → traverses list → O(n)
+reverse() → reverses half list → O(n/2) ≈ O(n)
+while loop (comparison) → O(n/2) ≈ O(n)
+Total = O(n + n + n) = O(n)
+
+✅ Space Complexity: O(1)
+Why:
+No extra data structure used
+Only pointers (prev, curr, hare, turtle, etc.)
+👉 Constant space
+
+
+
+
+
+// Qs3 :- Given the head of a singly linked list, determine if the linked list has a cycle in it.
+✅ Time Complexity: O(n)
+Why :
+hare and turtle traverse the list
+In worst case, they visit each node once
+👉 So total steps proportional to n
+
+✅ Space Complexity: O(1)
+Why:
+Only two pointers used (hare, turtle)
+No extra memory/data structure
+👉 Constant space
+
+⚡ Final Answer 
+Time Complexity: O(n)
+Space Complexity: O(1)
