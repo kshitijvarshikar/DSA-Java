@@ -137,10 +137,7 @@ B.Tech in Artificial Intelligence
 
 Passionate about Software Development, Data Structures & Algorithms, Machine Learning, and Continuous Learning.
 
----
 
-<<<<<<< HEAD
-### ⭐ If you find this repository useful, consider giving it a star.
-=======
-### ⭐ If you find this repository useful, consider giving it a star.
->>>>>>> b0a19f6b802a21aa47f35e099521cb91bee5c25d
+⭐ If you find this repository useful, consider giving it a star.
+
+⭐ If you find this repository useful, consider giving it a star.
