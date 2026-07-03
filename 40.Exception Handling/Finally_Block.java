@@ -12,6 +12,7 @@ public class Finally_Block {
         catch (Exception e) {
             System.out.println("Exception Handling");
         }
+        // System.exit();
         // we use only one finally block & it will run always but in some case like system.exit() etc cases finally is not work
         finally {
             System.out.println("I Will Always Run...");
