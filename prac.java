@@ -1,153 +1,83 @@
 import java.util.*;
 
-public class prac {
+class prac {
 
-    // public static void towerOfHanoi(int n, String src, String helper, String
-    // dest) {
-    // if (n == 1) {
-    // System.out.println("Transfer disk " + n + " from " + src + " to " + dest);
-    // return;
-    // }
-    // towerOfHanoi(n - 1, src, dest, helper);
-    // System.out.println("Transfer disk " + n + " from " + src + " to " + dest);
-    // towerOfHanoi(n - 1, helper, src, dest);
-
-    // }
-
-    // public static void printRev(String str, int idx) {
-    // if (idx == 0) {
-    // System.out.print(str.charAt(idx));
-    // return;
-    // }
-    // System.out.print(str.charAt(idx) + " ");
-    // printRev(str, idx - 1);
-    // }
-
-    // public static int first = -1;
-    // public static int last = -1;
-
-    // public static void findOccurance(String str, int idx, char element) {
-    // if (idx == str.length()) {
-    // System.out.println(first);
-    // System.out.println(last);
-    // return;
-    // }
-    // // char curchar = str.charAt(idx);
-    // if (first == -1) {
-    // first = idx;
-    // } else {
-    // last = idx;
-    // }
-    // findOccurance(str, idx + 1, element);
-    // }
-
-    public static boolean isSorted(int arr[], int idx) {
-        if (idx == arr.length - 1) {
-            return true;
+    public static void printPerm(String str, String permutation) {
+        if (str.length() == 0) {
+            System.out.println(permutation);
+            return;
         }
-
-        if (arr[idx] < arr[idx + 1]) {
-            return isSorted(arr, idx + 1);
-        } else {
-            return false;
+        for (int i = 0; i < str.length(); i++) {
+            char curChar = str.charAt(i);
+            String newStr = str.substring(0, i) + str.substring(i + 1);
+            printPerm(newStr, permutation + curChar);
         }
     }
 
-    public static void countX(String str, int idx, int count, String newString) {
-        if (idx == str.length()) {
+    public static int countTiles(int n, int m) {
+        if (n == m) {
+            return 2;
+        }
+        if (n < m) {
+            return 1;
+        }
 
-            for (int i = 0; i <= count; i++) {
-                newString += 'x';
-            }
-            System.out.println(newString);
-            return;
-        }
-        char curChar = str.charAt(idx);
-        if (curChar == 'x') {
-            count++;
-            countX(str, idx + 1, count, newString);
-        } else {
-            newString += curChar;
-            countX(str, idx + 1, count, newString);
-        }
+        int vertically = countTiles(n - m, m);
+        int horizontally = countTiles(n - 1, m);
+
+        return vertically + horizontally;
     }
 
-    // public static boolean[] map = new boolean[26];
+    public static int callGuest(int n) {
+        if (n <= 1) {
+            return 1;
+        }
 
-    // public static void removeDuplicates(String str, int idx, String newString) {
-    // if (idx == str.length()) {
-    // System.out.println(newString);
-    // return;
-    // }
-    // char curChar = str.charAt(idx);
-    // if (map[curChar - 'a']) {
-    // removeDuplicates(str, idx + 1, newString);
-    // } else {
-    // newString += curChar;
-    // map[curChar - 'a'] = true;
-    // removeDuplicates(str, idx + 1, newString);
-    // }
-    // }
+        // single
+        int way1 = callGuest(n - 1);
 
-    // public static void subSequence(String str, int idx, String newString,
-    // HashSet<String> set) {
-    // if (idx == str.length()) {
-    // if (set.contains(newString)) {
-    // return;
-    // } else {
-    // System.out.println(newString);
-    // set.add(newString);
-    // return;
-    // }
-    // }
-    // char curChar = str.charAt(idx);
-    // subSequence(str, idx + 1, newString + curChar, set);
-    // subSequence(str, idx + 1, newString, set);
-    // }
+        // pair
+        int way2 = (n - 1) * callGuest(n - 2);
 
-    public static String[] keypad = { ".", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz" };
+        return way1 + way2;
+    }
 
-    public static void maping(String str, int idx, String combination) {
-        if (idx == str.length()) {
-            System.out.println(combination);
+    public static void printSubsets(ArrayList<Integer> subset) {
+        for (int i = 0; i < subset.size(); i++) {
+            System.out.print(subset.get(i) + " ");
+        }
+        System.out.println();
+    }
+
+    public static void findSubsets(int n, ArrayList<Integer> subset) {
+        if (n == 0) {
+            printSubsets(subset);
             return;
         }
-        char curChar = str.charAt(idx);
-        String mapping = keypad[curChar - '0'];
 
-        for (int i = 0; i < mapping.length(); i++) {
-            maping(str, idx + 1, combination + mapping.charAt(i));
-        }
+        // add hoga
+        subset.add(n);
+        findSubsets(n - 1, subset);
+
+        // add nhi hoga
+        subset.remove(subset.size() - 1);
+        findSubsets(n - 1, subset);
     }
 
     public static void main(String[] args) {
+        int n = 3;
+        ArrayList<Integer> subset = new ArrayList<>();
+        findSubsets(n, subset);
 
-        String str = "23";
-        maping(str, 0, "");
+        // int n = 4;
+        // int totalPairs = callGuest(n);
+        // System.out.println(totalPairs);
 
-        // String str = "aaa";
-        // HashSet<String> set = new HashSet<>();
-        // subSequence(str, 0, "", set);
+        // int n = 4, m = 2;
+        // int totalChoice = countTiles(n, m);
+        // System.out.println("Total Option is: " + totalChoice);
 
-        // String str = "abbccda";
-        // removeDuplicates(str, 0, "");
-
-        // String str = "axbcxxd";
-        // countX(str, 0, 0, "");
-
-        // int arr[] = { 1, 5, 8, 13 };
-        // System.out.println(isSorted(arr, 0));
-
-        // String str = "abaacdaefaahaha";
-        // findOccurance(str, 0, 'a');
-
-        // String str = "abcd";
-        // int idx = str.length() - 1;
-        // printRev(str, idx);
-
-        // int n = 3;
-        // towerOfHanoi(n, "S", "H", "D");
-
+        // String str = "abc";
+        // printPerm(str, "");
     }
-
 }
