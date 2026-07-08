@@ -1,122 +1,93 @@
-import java.util.*;
+class prac {
 
-public class prac {
+    public boolean isSafe(char[][] board, int row, int col, int number) {
 
-    public boolean isSafe(int row, int col, char board[][]) {
-        // horizontal
-        for (int j = 0; j < board.length; j++) {
-            if (board[row][j] == 'Q') {
-                return false;
-            }
-        }
-
-        // vertical
         for (int i = 0; i < board.length; i++) {
-            if (board[i][col] == 'Q') {
+            if (board[i][col] == (char) (number + '0')) {
                 return false;
             }
         }
 
-        // upper left
-        int r = row;
-        for (int c = col; c >= 0 && r >= 0; r--, c--) {
-            if (board[r][c] == 'Q') {
+        for (int j = 0; j < board.length; j++) {
+            if (board[row][j] == (char) (number + '0')) {
                 return false;
             }
         }
 
-        // upper right
-        r = row;
-        for (int c = col; c < board.length && r >= 0; r--, c++) {
-            if (board[r][c] == 'Q') {
-                return false;
-            }
-        }
+        int sr = 3 * (row / 3);
+        int sc = 3 * (col / 3);
 
-        // lower left
-        r = row;
-        for (int c = col; c >= 0 && r < board.length; r++, c--) {
-            if (board[r][c] == 'Q') {
-                return false;
-            }
-        }
-
-        // lower right
-        r = row;
-        for (int c = col; c < board.length && r < board.length; r++, c++) {
-            if (board[r][c] == 'Q') {
-                return false;
+        for (int i = sr; i < sr + 3; i++) {
+            for (int j = sc; j < sc + 3; j++) {
+                if (board[i][j] == (char) (number + '0')) {
+                    return false;
+                }
             }
         }
 
         return true;
     }
 
-    public void saveBoard(char board[][], List<List<String>> allBoards) {
-        List<String> newBoard = new ArrayList<>();
+    public boolean helper(char[][] board, int row, int col) {
+        if (row == board.length) { // base case
+            return true;
+        }
 
-        for (int i = 0; i < board.length; i++) {
-            String row = "";
+        int nrow = 0;
+        int ncol = 0;
 
-            for (int j = 0; j < board[0].length; j++) {
-                if (board[i][j] == 'Q') {
-                    row += 'Q';
-                } else {
-                    row += '.';
+        if (col == board.length - 1) {
+            nrow = row + 1;
+            ncol = 0;
+        } else {
+            nrow = row;
+            ncol = col + 1;
+        }
+
+        if (board[row][col] != '.') {
+            if (helper(board, nrow, ncol)) {
+                return true;
+            }
+        } else {
+
+            for (int i = 1; i <= 9; i++) {
+                if (isSafe(board, row, col, i)) {
+                    board[row][col] = (char) (i + '0');
+                    if (helper(board, nrow, ncol))
+                        return true;
+                    else
+                        board[row][col] = '.';
                 }
             }
-
-            newBoard.add(row);
         }
 
-        allBoards.add(newBoard);
+        return false;
     }
 
-    public void helper(char board[][], List<List<String>> allBoards, int col) {
-        if (col == board.length) {
-            saveBoard(board, allBoards);
-            return;
-        }
-
-        for (int row = 0; row < board.length; row++) {
-            if (isSafe(row, col, board)) {
-                board[row][col] = 'Q';
-                helper(board, allBoards, col + 1);
-                board[row][col] = '.';
-            }
-        }
-    }
-
-    public List<List<String>> solveNQueens(int n) {
-        List<List<String>> allBoards = new ArrayList<>();
-        char board[][] = new char[n][n];
-
-        for (int i = 0; i < n; i++) {
-            Arrays.fill(board[i], '.');
-        }
-
-        helper(board, allBoards, 0);
-        return allBoards;
+    public void solveSudoku(char[][] board) {
+        helper(board, 0, 0);
     }
 
     public static void main(String[] args) {
-        prac obj = new prac();
+        char[][] board = {
+                { '5', '3', '.', '.', '7', '.', '.', '.', '.' },
+                { '6', '.', '.', '1', '9', '5', '.', '.', '.' },
+                { '.', '9', '8', '.', '.', '.', '.', '6', '.' },
+                { '8', '.', '.', '.', '6', '.', '.', '.', '3' },
+                { '4', '.', '.', '8', '.', '3', '.', '.', '1' },
+                { '7', '.', '.', '.', '2', '.', '.', '.', '6' },
+                { '.', '6', '.', '.', '.', '.', '2', '8', '.' },
+                { '.', '.', '.', '4', '1', '9', '.', '.', '5' },
+                { '.', '.', '.', '.', '8', '.', '.', '7', '9' }
+        };
 
-        int n = 4;
-        List<List<String>> result = obj.solveNQueens(n);
+        prac s = new prac();
+        s.solveSudoku(board);
 
-        int count = 1;
-
-        for (List<String> board : result) {
-            System.out.println("Solution " + count++ + ":");
-
-            for (String row : board) {
-                for (char ch : row.toCharArray()) {
-                    System.out.print(ch + " ");
-                }
-                System.out.println();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                System.out.print(board[i][j] + " ");
             }
-
             System.out.println();
         }
     }
