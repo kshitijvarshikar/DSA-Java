@@ -1,29 +1,28 @@
-// polymorphism
+// Inheritance - one class gets properties of another class
 
-import java.util.*;
+class Shape {
+    String color;
 
-class Student {
-    String name;
-    int age;
-
-    public void printInfo(String name) {
-        System.out.println(name);
+    public void printInfo() {
+        System.out.println(this.color);
     }
+}
 
-    public void printInfo(int age) {
-        System.out.println(age);
+class Triangle extends Shape {
+    public void area(int l, int h) {
+        System.out.println(1 / 2 * l * h);
     }
+}
 
-    public void printInfo(String name, int age) {
-        System.out.println(name + " " + age);
+class EquilateralTriangle extends Triangle {
+    public void area(int l, int h) {
+        System.out.println(1 / 2 * l * h);
     }
 }
 
 public class prac {
     public static void main(String[] args) {
-        Student s1 = new Student();
-        s1.name = "kshitij";
-        s1.age = 20;
-        s1.printInfo(s1.name);
+        Triangle t1 = new Triangle();
+        t1.color = "red";
     }
 }
