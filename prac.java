@@ -1,45 +1,55 @@
+// classes and objects
+
 import java.util.*;
 
+class Pen {
+    String color;
+    String type;
+
+    public void write() {
+        System.out.println("Writing Something");
+    }
+
+    public void getProperty() {
+        System.out.println(this.color);
+        System.out.println(this.type);
+    }
+}
+
+class Student {
+    String name;
+    int age;
+
+    // public void cons() {
+    // System.out.println("Constructor Here");
+    // }
+
+    public void printInfo() {
+        System.out.println(this.name);
+        System.out.println(this.age);
+    }
+}
+
 public class prac {
-    public static int partition(int arr[], int low, int high) {
-        int pivot = arr[high];
-        int i = low - 1;
-
-        for (int j = low; j < high; j++) {
-            if (arr[j] < pivot) {
-                i++;
-
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
-        }
-
-        i++;
-        int temp = arr[i];
-        arr[i] = arr[high];
-        arr[high] = temp;
-        return i;
-    }
-
-    public static void quicksort(int arr[], int low, int high) {
-        if (low < high) {
-            int pivot = partition(arr, low, high);
-            quicksort(arr, low, pivot - 1);
-            quicksort(arr, pivot + 1, high);
-        }
-    }
-
     public static void main(String[] args) {
-        int arr[] = { 6, 3, 9, 5, 2, 8 };
+        // Pen pen1 = new Pen();
+        // pen1.color = "black";
+        // pen1.type = "ball";
+        // pen1.write();
 
-        int n = arr.length;
+        // Pen pen2 = new Pen();
+        // pen2.color = "blue";
+        // pen2.type = "gel";
+        // pen2.write();
 
-        quicksort(arr, 0, n - 1);
+        // pen1.getProperty();
+        // pen2.getProperty();
 
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
+        Student std1 = new Student();
+        std1.name = "kshitij";
+        std1.age = 21;
+        // std1.cons();
+        std1.printInfo();
+
     }
 }
