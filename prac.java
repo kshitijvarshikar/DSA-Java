@@ -1,28 +1,34 @@
-// Inheritance - one class gets properties of another class
+// access modifier and getters and setters
 
-class Shape {
-    String color;
+import java.util.*;
 
-    public void printInfo() {
-        System.out.println(this.color);
+class Students {
+    private String name;
+    private int id;
+
+    public String getname() {
+        return name;
     }
-}
 
-class Triangle extends Shape {
-    public void area(int l, int h) {
-        System.out.println(1 / 2 * l * h);
+    public void setname(String n) {
+        this.name = n;
     }
-}
 
-class EquilateralTriangle extends Triangle {
-    public void area(int l, int h) {
-        System.out.println(1 / 2 * l * h);
+    public int getid() {
+        return id;
+    }
+
+    public void setid(int n) {
+        this.id = n;
     }
 }
 
 public class prac {
     public static void main(String[] args) {
-        Triangle t1 = new Triangle();
-        t1.color = "red";
+        Students s1 = new Students();
+        s1.setname("kshitij");
+        System.out.println(s1.getname());
+        s1.setid(03);
+        System.out.println(s1.getid());
     }
 }
