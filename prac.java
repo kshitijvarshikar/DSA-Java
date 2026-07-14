@@ -1,34 +1,42 @@
-// access modifier and getters and setters
-
-import java.util.*;
-
-class Students {
-    private String name;
-    private int id;
-
-    public String getname() {
-        return name;
-    }
-
-    public void setname(String n) {
-        this.name = n;
-    }
-
-    public int getid() {
-        return id;
-    }
-
-    public void setid(int n) {
-        this.id = n;
-    }
-}
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class prac {
     public static void main(String[] args) {
-        Students s1 = new Students();
-        s1.setname("kshitij");
-        System.out.println(s1.getname());
-        s1.setid(03);
-        System.out.println(s1.getid());
+        // ArrayList<String> list = new ArrayList<>();
+        // ArrayList<Boolean> list = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<>();
+
+        // add
+        list.add(5);
+        list.add(2);
+        list.add(0);
+
+        System.out.println(list);
+
+        // get
+        System.out.println(list.get(1));
+
+        // add in betweem
+        list.add(2, 3);
+        // System.out.println(list);
+
+        // set
+        list.set(0, 1);
+        System.out.println(list);
+
+        // delete
+        list.remove(0);
+        System.out.println(list.size());
+
+        // loops
+        for (int i = 0; i < list.size(); i++) {
+            System.out.print(list.get(i) + " ");
+        }
+        System.out.println();
+
+        // sorting
+        Collections.sort(list);
+        System.out.println(list);
     }
 }
