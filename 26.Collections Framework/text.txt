@@ -1,0 +1,3 @@
+Collection Framework:
+
+Java Collection Framework (JCF) is a ready-made library of classes and interfaces that helps you to store, organise, and manages a group of objects(Data) efficiently.

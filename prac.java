@@ -1,27 +1,43 @@
-// Majority Element Using HashMap
-
-import java.util.*;
 
 public class prac {
-    public static void majorityElement(int nums[]) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        int n = nums.length;
-        for (int i = 0; i < n; i++) {
-            if (map.containsKey(nums[i])) { // True
-                map.put(nums[i], map.get(nums[i]) + 1);
-            } else { // False
-                map.put(nums[i], 1);
-            }
+    public static void main(String[] args) {
+        int a[] = new int[5];
+
+        System.out.println("Hello Guys");
+
+        // try {
+            // int result = 5 / 0;
+            // System.out.println(a[8]);
+        // } 
+        // catch (ArrayIndexOutOfBoundsException e) {
+            // System.out.println("Tries to access out of bound index");
+        // } 
+        // catch (ArithmeticException e) {
+            // System.out.println("ArithmeticException");
+            // System.out.println(e.getStackTrace());
+            // System.out.println(e.getMessage());
+            // System.out.println(e);
+        // }
+
+
+        // try {
+            // int result = 5 / 0;
+            // System.out.println(a[8]);
+        // } 
+        // catch (ArithmeticException | ArrayIndexOutOfBoundsException | NullPointerException | NumberFormatException e) {
+            // System.out.println("Handling Ecxception");
+        // }
+
+        try {
+            int result = 5 / 0;
+            System.out.println(a[8]);
+        } 
+        catch (Exception e) {
+            System.out.println("Handling Exception");
         }
-        for (int key : map.keySet()) {
-            if (map.get(key) > n / 3) {
-                System.out.println(key);
-            }
-        }
+
+        System.out.println("Bye Guys");
+
     }
 
-    public static void main(String[] args) {
-        int nums[] = { 1, 3, 2, 5, 1, 3, 1, 5, 1 }; // O(n)
-        majorityElement(nums); // 1
-    }
 }
