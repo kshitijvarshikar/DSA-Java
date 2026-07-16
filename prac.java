@@ -1,42 +1,27 @@
-import java.util.ArrayList;
-import java.util.Collections;
+// Majority Element Using HashMap
+
+import java.util.*;
 
 public class prac {
-    public static void main(String[] args) {
-        // ArrayList<String> list = new ArrayList<>();
-        // ArrayList<Boolean> list = new ArrayList<>();
-        ArrayList<Integer> list = new ArrayList<>();
-
-        // add
-        list.add(5);
-        list.add(2);
-        list.add(0);
-
-        System.out.println(list);
-
-        // get
-        System.out.println(list.get(1));
-
-        // add in betweem
-        list.add(2, 3);
-        // System.out.println(list);
-
-        // set
-        list.set(0, 1);
-        System.out.println(list);
-
-        // delete
-        list.remove(0);
-        System.out.println(list.size());
-
-        // loops
-        for (int i = 0; i < list.size(); i++) {
-            System.out.print(list.get(i) + " ");
+    public static void majorityElement(int nums[]) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            if (map.containsKey(nums[i])) { // True
+                map.put(nums[i], map.get(nums[i]) + 1);
+            } else { // False
+                map.put(nums[i], 1);
+            }
         }
-        System.out.println();
+        for (int key : map.keySet()) {
+            if (map.get(key) > n / 3) {
+                System.out.println(key);
+            }
+        }
+    }
 
-        // sorting
-        Collections.sort(list);
-        System.out.println(list);
+    public static void main(String[] args) {
+        int nums[] = { 1, 3, 2, 5, 1, 3, 1, 5, 1 }; // O(n)
+        majorityElement(nums); // 1
     }
 }
