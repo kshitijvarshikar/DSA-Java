@@ -1,21 +1,25 @@
-import java.util.*;
+class LL {
 
-public class main {
+    int size;
+
+    LL() {
+        this.size = 0;
+    }
 
     Node head;
 
     class Node {
-        String data;
+        int data;
         Node next;
 
-        Node(String data) {
+        Node(int data) {
             this.data = data;
-            this.next = next;
+            this.next = null;
+            size++;
         }
     }
 
-    // add first
-    public void addfirst(String data) {
+    public void addFirst(int data) {
         Node newNode = new Node(data);
         if (head == null) {
             head = newNode;
@@ -25,8 +29,7 @@ public class main {
         head = newNode;
     }
 
-    // add last
-    public void addlast(String data) {
+    public void addLast(int data) {
         Node newNode = new Node(data);
         if (head == null) {
             head = newNode;
@@ -36,14 +39,12 @@ public class main {
         while (curNode.next != null) {
             curNode = curNode.next;
         }
-
         curNode.next = newNode;
     }
 
-    // print
-    public void print() {
+    public void printList() {
         if (head == null) {
-            System.out.println("List is empthy");
+            System.out.println("List is Empthy");
             return;
         }
         Node curNode = head;
@@ -54,50 +55,56 @@ public class main {
         System.out.println("Null");
     }
 
-    // deletefirst
-    public void deletefirst() {
-        if (head == null) {
-            System.out.println("List is empthy");
-            return;
-        }
-        head = head.next;
+    public int getSize() {
+        return size;
     }
 
-    // deletelast
-    public void deletelast() {
-        if (head == null) {
-            System.out.println("List is empthy");
+    // Reverse --> Iterable
+    public void printRev() {
+        if (head == null || head.next == null) {
             return;
         }
+        Node prevNode = head;
+        Node curNode = head.next;
+        while (curNode != null) {
+            Node nextNode = curNode.next;
+            curNode.next = prevNode;
 
-        if (head.next == null) {
-            head = null;
-            return;
+            prevNode = curNode;
+            curNode = nextNode;
         }
-
-        Node secondLatNode = head;
-        Node lasNode = head.next;
-        while (lasNode.next != null) {
-            lasNode = lasNode.next;
-            secondLatNode = secondLatNode.next;
-        }
-
-        secondLatNode.next = null;
+        head.next = null;
+        head = prevNode;
     }
 
+    // Reverse --> Recursively
+    public Node reverseRecursive(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        Node newHead = reverseRecursive(head.next);
+        head.next.next = head;
+        head.next = null;
+
+        return newHead;
+
+    }
+}
+
+public class main {
     public static void main(String[] args) {
-        main ll = new main();
-        ll.addfirst("a");
-        ll.addfirst("is");
-        ll.print();
+        LL list = new LL();
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(4);
+        list.printList();
 
-        ll.addlast("list");
-        ll.print();
+        // list.printRev();
+        // list.printList();
 
-        ll.deletelast();
-        ll.print();
-        ll.deletefirst();
-        ll.print();
+        list.head = list.reverseRecursive(list.head);
+        list.printList();
 
     }
 }
